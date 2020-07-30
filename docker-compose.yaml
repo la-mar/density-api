@@ -1,0 +1,44 @@
+version: "3.7"
+
+x-defaults: &defaults
+  image: density
+  build:
+    context: .
+    dockerfile: Dockerfile
+  restart: unless-stopped
+  environment:
+    - DATABASE_HOST=postgres
+    - PYTHONPATH=/app/density
+  env_file:
+    - .env
+  depends_on:
+    - postgres
+  volumes:
+    - ./src/density:/app/density
+
+services:
+  web:
+    <<: *defaults
+    container_name: density_web
+    command: density run web --host 0.0.0.0 --port 8000
+    ports:
+      - 8000:8000
+  postgres:
+    image: timescale/timescaledb:latest-pg12
+    container_name: postgres
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - density-api-pgdata:/var/lib/postgresql/data/pgdata
+  db_migration:
+    <<: *defaults
+    container_name: density_db_migrations
+    restart: "no"
+    command: density db upgrade
+volumes:
+  density-api-pgdata:

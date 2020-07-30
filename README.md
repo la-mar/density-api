@@ -28,8 +28,6 @@ Density Processing Units, or DPUs, are sensors mounted above doorways. The DPU s
 
 <br/>
 
-<br/>
-
 # Usage & Development
 
 ##### Required tools:

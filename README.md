@@ -1,29 +1,5 @@
 # density-api
 
-# [Homework Repo](https://github.com/DensityCo/api-homework)
-
-Create an API that can handle:
-
-1. **historical** people count requests from consumers.
-2. **real-time** people count requests from consumers.
-
-Your task is to accomplish the following:
-
-- Scaffold a **database** structure that includes:
-  - spaces
-  - doorways
-  - count data
-- Document how you would store and return real-time count for spaces.
-- Document how you would store and return historical count for spaces.
-- Prototype an API endpoint that yields the current count of a given space at a given point in time.
-- Describe the technologies you would use in production to handle this workload at scale (100,000 DPUs).
-
-Items to take into consideration:
-
-- DPUs are sometimes moved from one doorway to another.
-- DPUs sometimes send events out of order.
-- DPUs don't always send data up in real-time. Network downtime and other events can cause delayed events.
-
 # About
 
 This is a project implementing an API to store and serve people counts measured by
